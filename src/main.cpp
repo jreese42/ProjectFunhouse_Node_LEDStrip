@@ -12,23 +12,15 @@
 AnimationController animController;
 LEDStrip* ledStrip;
 
-//todo reverse runner lights
-//todo reverse marching ants
-//todo anim cycling
-
 void setup() {
     ledStrip = new LEDStrip(150, 5);
 
     animController = AnimationController(ledStrip);
+
     //Declare Palettes (be sure to declare them with new so they do not go out of scope)
     ColorPalette* halloween_OrangeAndPurple = new ColorPalette(CRGB(241, 88, 2),
                                                           CRGB(124, 16, 173));
     ColorPalette* halloween_SolidOrange = new ColorPalette(CRGB(241, 88, 2));
-                                                          //124,16,173 purple
-                                                          //27,165,44 green
-                                                          //124,16,173 orange
-                                                          //0,0,0 black
-                                                          //61,61,61 gray
     ColorPalette* halloween_BloodRed = new ColorPalette(CRGB(138, 7, 7));
     ColorPalette* halloween_LightningStorm = new ColorPalette(CRGB(255, 255, 255),CRGB(0,0,0), CRGB(166,166,236));
 
@@ -44,10 +36,9 @@ void setup() {
     animController.addAnimationPattern(anim_lightningStorm);
     animController.addAnimationPattern(anim_2colorAnts);
     animController.addAnimationPattern(anim_redHeartbeat);
-    animController.setCycleMode(AnimationController::CycleModeLoop, 7000);
+    animController.setCycleMode(AnimationController::CycleModeLoop, 13000);
 }
 
 void loop() {
     animController.run();
-    //delay(30);
 }

@@ -29,7 +29,7 @@ void RunnerLightsAnimation::stepAnimation(CRGB* buffer, int elapsedTime)
             current_offset = 0;
         }
     } else if (this->direction == Direction::REVERSE) {
-        if (current_offset-- <= 0) {
+        if (--current_offset <= 0) {
             current_offset = spacing;
         }
     }
