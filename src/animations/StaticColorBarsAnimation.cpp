@@ -36,5 +36,5 @@ void StaticColorBarsAnimation::stepAnimation(CRGB* buffer, int elapsedTime)
 }
 
 void StaticColorBarsAnimation::resetAnimation(CRGB* buffer) {
-    // this->startupTimer = this->startupTime;
+    
 }
