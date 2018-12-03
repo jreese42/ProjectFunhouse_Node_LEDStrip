@@ -21,6 +21,7 @@ LEDStrip::LEDStrip(int length, int deadZoneLength) :
 void LEDStrip::setAnimation(AnimationPattern* ap) 
 {
     this->animationPattern = ap;
+    this->animationPattern->resetAnimation(getBuffer());
 }
 
 void LEDStrip::stepAnimation()

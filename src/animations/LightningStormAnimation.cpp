@@ -53,3 +53,7 @@ void LightningStormAnimation::stepAnimation(CRGB* buffer, int elapsedTime)
         fill_solid(buffer, this->length, color);
     }
 }
+
+void LightningStormAnimation::resetAnimation(CRGB* buffer) {
+
+}

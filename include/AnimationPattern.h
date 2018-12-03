@@ -23,6 +23,7 @@ class AnimationPattern {
 public:
     AnimationPattern(int length, const ColorPalette& palette);
     virtual void stepAnimation(CRGB* buffer, int elapsedTime) = 0;
+    virtual void resetAnimation(CRGB* buffer) = 0;
 
 protected:
     int length;

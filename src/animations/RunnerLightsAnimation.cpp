@@ -34,3 +34,7 @@ void RunnerLightsAnimation::stepAnimation(CRGB* buffer, int elapsedTime)
         }
     }
 }
+
+void RunnerLightsAnimation::resetAnimation(CRGB* buffer) {
+
+}

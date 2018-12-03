@@ -9,7 +9,7 @@ MarchingAntsAnimation::MarchingAntsAnimation(int length, const ColorPalette& pal
 void MarchingAntsAnimation::stepAnimation(CRGB* buffer, int elapsedTime)
 {
     static uint8_t curr_offset = 0;
-    static bool swapColors = false;
+    static uint8_t color_offset = 0;
 
     EVERY_N_MILLISECONDS(this->millisRate) { //todo replace this with elapsedTime
         int color_idx = 0;
@@ -22,22 +22,28 @@ void MarchingAntsAnimation::stepAnimation(CRGB* buffer, int elapsedTime)
         if (this->direction == Direction::FORWARD) {      
             if (++curr_offset >= this->antSpacing) {
                 curr_offset = 0;
-                swapColors = !swapColors; //Swap the colors to give the illusion that the colors move down the strip
+                color_offset++; //Swap the colors to give the illusion that the colors move down the strip
+                if (color_offset > this->palette.paletteSize())
+                    color_offset = 0;
             }
         } else if (this->direction == Direction::REVERSE) {
             if (curr_offset-- == 0) {
                 curr_offset = this->antSpacing-1;
-                swapColors = !swapColors; //Swap the colors to give the illusion that the colors move down the strip
+                color_offset++; //Swap the colors to give the illusion that the colors move down the strip
+                if (color_offset > this->palette.paletteSize())
+                    color_offset = 0;
             }
         }
 
         //set new pixels to colors from palette
         for (int i = curr_offset; i < this->length; i+=this->antSpacing) {
-            if (swapColors)
-                buffer[i] = (color_idx++)&0x01 ? this->palette.getSecondary() : this->palette.getPrimary();
-            else
-                buffer[i] = (color_idx++)&0x01 ? this->palette.getPrimary() : this->palette.getSecondary();
+            buffer[i] = this->palette.getColor((color_idx + color_offset) % this->palette.paletteSize());
+            color_idx++;
         }
 
     }
+}
+
+void MarchingAntsAnimation::resetAnimation(CRGB* buffer) {
+
 }

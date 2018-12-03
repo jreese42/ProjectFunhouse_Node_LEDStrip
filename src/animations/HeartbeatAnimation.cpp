@@ -32,3 +32,7 @@ void HeartbeatAnimation::stepAnimation(CRGB* buffer, int elapsedTime)
         next_flash_timer--;
     }
 }
+
+void HeartbeatAnimation::resetAnimation(CRGB* buffer) {
+
+}

@@ -8,6 +8,9 @@ SolidColorAnimation::SolidColorAnimation(int length, const ColorPalette& palette
 
 void SolidColorAnimation::stepAnimation(CRGB* buffer, int elapsedTime)
 {
-    //fill color and return
+    //no need to do anything, the color is static
+}
+
+void SolidColorAnimation::resetAnimation(CRGB* buffer) {
     fill_solid(buffer, this->length, this->palette.getPrimary());
 }
