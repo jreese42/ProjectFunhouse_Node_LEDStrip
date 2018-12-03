@@ -18,6 +18,7 @@ public:
     ColorPalette(CRGB c1);
     ColorPalette(CRGB c1, CRGB c2);
     ColorPalette(CRGB c1, CRGB c2, CRGB c3);
+    ColorPalette(CRGB c1, CRGB c2, CRGB c3, CRGB c4);
     ~ColorPalette();
     //Track # of colors set
     int paletteSize();

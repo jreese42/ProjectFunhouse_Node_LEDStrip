@@ -29,6 +29,16 @@ ColorPalette::ColorPalette(CRGB c1, CRGB c2, CRGB c3) :
     this->palette[2] = c3;
 }
 
+ColorPalette::ColorPalette(CRGB c1, CRGB c2, CRGB c3, CRGB c4) :
+    mPaletteSize(3)
+{
+    this->palette = new CRGB[4];
+    this->palette[0] = c1;
+    this->palette[1] = c2;
+    this->palette[2] = c3;
+    this->palette[3] = c4;
+}
+
 ColorPalette::~ColorPalette()
 {
     delete this->palette;
