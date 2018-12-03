@@ -16,6 +16,7 @@ class LightningStormAnimation : public AnimationPattern {
 public:
     LightningStormAnimation(int length, const ColorPalette& palette);
     void stepAnimation(CRGB* buffer, int elapsedTime);
+    void resetAnimation(CRGB* buffer);
 };
 
 #endif /* ANIMATIONS_LIGHTNINGSTORMANIMATION_H_ */
