@@ -15,6 +15,7 @@ class MarchingAntsAnimation : public AnimationPattern {
 public:
     MarchingAntsAnimation(int length, const ColorPalette& palette, int antSpacing, int millisRate, Direction direction);
     void stepAnimation(CRGB* buffer, int elapsedTime);
+    void resetAnimation(CRGB* buffer);
 
 private:
     int antSpacing;

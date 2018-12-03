@@ -16,6 +16,7 @@ class HeartbeatAnimation : public AnimationPattern {
 public:
     HeartbeatAnimation(int length, const ColorPalette& palette, int bpm);
     void stepAnimation(CRGB* buffer, int elapsedTime);
+    void resetAnimation(CRGB* buffer);
 
 private:
     int bpm;

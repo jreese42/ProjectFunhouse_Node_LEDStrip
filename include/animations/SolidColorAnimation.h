@@ -15,6 +15,7 @@ class SolidColorAnimation : public AnimationPattern {
 public:
     SolidColorAnimation(int length, const ColorPalette& palette);
     void stepAnimation(CRGB* buffer, int elapsedTime);
+    void resetAnimation(CRGB* buffer);
 };
 
 #endif /* ANIMATIONS_SOLIDCOLORANIMATION_H_ */

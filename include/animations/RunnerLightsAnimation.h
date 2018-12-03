@@ -16,6 +16,7 @@ class RunnerLightsAnimation : public AnimationPattern {
 public:
     RunnerLightsAnimation(int length, const ColorPalette& palette, int speed, int spacing, int tailLength, Direction direction);
     void stepAnimation(CRGB* buffer, int elapsedTime);
+    void resetAnimation(CRGB* buffer);
 
 private:
     int speed;
