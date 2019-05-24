@@ -23,6 +23,8 @@ public:
     int getBufferLength();
     CRGB* getBuffer();
 
+    void scaleBrightnessBy(float scale);
+
 private:
     int length;
     int deadZoneLength;

@@ -1,4 +1,5 @@
 #define FASTLED_ESP8266_D1_PIN_ORDER
+#define FASTLED_ALLOW_INTERRUPTS 0
 #include <LEDStrip.h>
 
 #include <FastLED.h>
@@ -43,4 +44,12 @@ int LEDStrip::getBufferLength()
 CRGB* LEDStrip::getBuffer()
 {
     return this->buffer + this->deadZoneLength;
+}
+
+/** Accepts a scale value as 0.0-1.0. All output to the LED strip will be scaled by this amount. **/
+void LEDStrip::scaleBrightnessBy(float scale) {
+    if (scale >= 0.0 && scale <= 1.0) {
+        uint8_t scaledMax = 255 * scale;
+        FastLED.setBrightness(scaledMax);
+    }
 }

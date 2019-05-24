@@ -16,8 +16,9 @@ AnimationController animController;
 LEDStrip* ledStrip;
 
 void setup() {
-    ledStrip = new LEDStrip(150*2, 0);
-    // ledStrip = new LEDStrip(150, 0);
+    // ledStrip = new LEDStrip(150*2, 0);
+    ledStrip = new LEDStrip(150, 0);
+    ledStrip->scaleBrightnessBy(0.4);
 
     animController = AnimationController(ledStrip);
 
@@ -35,7 +36,7 @@ void setup() {
     ColorPalette* xmas_RedAndGreen = new ColorPalette(CRGB(162, 44, 39),CRGB(146,152,103));
     ColorPalette* xmas_RedGreenWhite = new ColorPalette(CRGB(240, 14, 14),CRGB(22,230,22), CRGB(240,240,240));
     ColorPalette* xmas_RedGreenGoldSilver = new ColorPalette(CRGB(230, 22, 22), CRGB(22,230,22), CRGB(230, 160, 22), CRGB(255,255,255));
-    ColorPalette* xmas_Snow = new ColorPalette(CRGB(100, 100, 240),CRGB(22,24,100));
+    ColorPalette* xmas_Snow = new ColorPalette(CRGB(100, 100, 240),CRGB(44,44,120));
     ColorPalette* xmas_YellowLights = new ColorPalette(CRGB(230, 160, 25));
 
 
@@ -53,8 +54,8 @@ void setup() {
     /* Christmas Animations */
     MarchingAntsAnimation* anim_3colorAnts = new MarchingAntsAnimation(ledStrip->getBufferLength(), *xmas_RedGreenWhite, 3, 100, Direction::FORWARD);
     AccumulatingSnowAnimation* anim_snow = new AccumulatingSnowAnimation(ledStrip->getBufferLength(), *xmas_Snow);
-    DancingLightsAnimation* anim_dancingBells = new DancingLightsAnimation(ledStrip->getBufferLength(), *xmas_RedGreenWhite, 5 /*spacing*/, 2 /*jumpDistance*/, 2 /*numBlinks*/, 200 /*fadeTime*/, 100 /*onTime*/, 100 /*offTime*/);
-    DancingLightsAnimation* anim_dancingYellowLights = new DancingLightsAnimation(ledStrip->getBufferLength(), *xmas_YellowLights, 4 /*spacing*/, 1 /*jumpDistance*/, 1 /*numBlinks*/, 150 /*fadeTime*/, 150 /*onTime*/, 60 /*offTime*/);
+    DancingLightsAnimation* anim_dancingBells = new DancingLightsAnimation(ledStrip->getBufferLength(), *xmas_RedGreenWhite, 5 /*spacing*/, 3 /*jumpDistance*/, 2 /*numBlinks*/, 200 /*fadeTime*/, 100 /*onTime*/, 100 /*offTime*/);
+    DancingLightsAnimation* anim_dancingYellowLights = new DancingLightsAnimation(ledStrip->getBufferLength(), *xmas_YellowLights, 5 /*spacing*/, 2 /*jumpDistance*/, 1 /*numBlinks*/, 150 /*fadeTime*/, 150 /*onTime*/, 60 /*offTime*/);
     RandomSparklesAnimation* anim_randomColorSparkles = new RandomSparklesAnimation(ledStrip->getBufferLength(), *xmas_RedGreenGoldSilver);
 
     animController.addAnimationPattern(anim_3colorAnts); //Add Animations
@@ -62,7 +63,7 @@ void setup() {
     animController.addAnimationPattern(anim_dancingBells);
     animController.addAnimationPattern(anim_randomColorSparkles);
     animController.addAnimationPattern(anim_dancingYellowLights);
-    animController.setCycleMode(AnimationController::CycleModeLoop, 30000);
+    animController.setCycleMode(AnimationController::CycleModeLoop, 24000);
 }
 
 void loop() {
