@@ -16,6 +16,7 @@
 *.so
 *.dylib
 *.dll
+*.ld
 
 # Fortran module files
 *.mod
@@ -29,6 +30,10 @@
 
 # Compiled Binaries
 *.bin
+*.hash
+*.elf
+*.dblite
+
 
 # Executables
 *.exe

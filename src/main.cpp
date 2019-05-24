@@ -10,6 +10,7 @@
 #include <animations/AccumulatingSnowAnimation.h>
 #include <animations/DancingLightsAnimation.h>
 #include <animations/RandomSparklesAnimation.h>
+#include <animations/MovingBarsAnimation.h>
 #include <ColorPalette.h>
 
 AnimationController animController;
@@ -33,11 +34,14 @@ void setup() {
     // ColorPalette* halloween_LightningStorm = new ColorPalette(CRGB(255, 255, 255),CRGB(0,0,0), CRGB(166,166,236));
 
     /* Christmas Palettes */
-    ColorPalette* xmas_RedAndGreen = new ColorPalette(CRGB(162, 44, 39),CRGB(146,152,103));
-    ColorPalette* xmas_RedGreenWhite = new ColorPalette(CRGB(240, 14, 14),CRGB(22,230,22), CRGB(240,240,240));
-    ColorPalette* xmas_RedGreenGoldSilver = new ColorPalette(CRGB(230, 22, 22), CRGB(22,230,22), CRGB(230, 160, 22), CRGB(255,255,255));
-    ColorPalette* xmas_Snow = new ColorPalette(CRGB(100, 100, 240),CRGB(44,44,120));
-    ColorPalette* xmas_YellowLights = new ColorPalette(CRGB(230, 160, 25));
+    // ColorPalette* xmas_RedAndGreen = new ColorPalette(CRGB(162, 44, 39),CRGB(146,152,103));
+    // ColorPalette* xmas_RedGreenWhite = new ColorPalette(CRGB(240, 14, 14),CRGB(22,230,22), CRGB(240,240,240));
+    // ColorPalette* xmas_RedGreenGoldSilver = new ColorPalette(CRGB(230, 22, 22), CRGB(22,230,22), CRGB(230, 160, 22), CRGB(255,255,255));
+    // ColorPalette* xmas_Snow = new ColorPalette(CRGB(100, 100, 240),CRGB(44,44,120));
+    // ColorPalette* xmas_YellowLights = new ColorPalette(CRGB(230, 160, 25));
+
+    /* 4th of July / Memorial Day Color Palettes */
+    ColorPalette* usa_RedWhiteBlue = new ColorPalette(CRGB(179, 8, 24), CRGB(227,244,193), CRGB(26, 21, 158));
 
 
     // ** Create Animations and Apply Palettes ** //
@@ -52,17 +56,23 @@ void setup() {
     // RunnerLightsAnimation* anim_runnerLights = new RunnerLightsAnimation(ledStrip->getBufferLength(), *halloween_SolidOrange, 5, 10, 4, Direction::REVERSE);
 
     /* Christmas Animations */
-    MarchingAntsAnimation* anim_3colorAnts = new MarchingAntsAnimation(ledStrip->getBufferLength(), *xmas_RedGreenWhite, 3, 100, Direction::FORWARD);
-    AccumulatingSnowAnimation* anim_snow = new AccumulatingSnowAnimation(ledStrip->getBufferLength(), *xmas_Snow);
-    DancingLightsAnimation* anim_dancingBells = new DancingLightsAnimation(ledStrip->getBufferLength(), *xmas_RedGreenWhite, 5 /*spacing*/, 3 /*jumpDistance*/, 2 /*numBlinks*/, 200 /*fadeTime*/, 100 /*onTime*/, 100 /*offTime*/);
-    DancingLightsAnimation* anim_dancingYellowLights = new DancingLightsAnimation(ledStrip->getBufferLength(), *xmas_YellowLights, 5 /*spacing*/, 2 /*jumpDistance*/, 1 /*numBlinks*/, 150 /*fadeTime*/, 150 /*onTime*/, 60 /*offTime*/);
-    RandomSparklesAnimation* anim_randomColorSparkles = new RandomSparklesAnimation(ledStrip->getBufferLength(), *xmas_RedGreenGoldSilver);
+    // MarchingAntsAnimation* anim_3colorAnts = new MarchingAntsAnimation(ledStrip->getBufferLength(), *xmas_RedGreenWhite, 3, 100, Direction::FORWARD);
+    // AccumulatingSnowAnimation* anim_snow = new AccumulatingSnowAnimation(ledStrip->getBufferLength(), *xmas_Snow);
+    // DancingLightsAnimation* anim_dancingBells = new DancingLightsAnimation(ledStrip->getBufferLength(), *xmas_RedGreenWhite, 5 /*spacing*/, 3 /*jumpDistance*/, 2 /*numBlinks*/, 200 /*fadeTime*/, 100 /*onTime*/, 100 /*offTime*/);
+    // DancingLightsAnimation* anim_dancingYellowLights = new DancingLightsAnimation(ledStrip->getBufferLength(), *xmas_YellowLights, 5 /*spacing*/, 2 /*jumpDistance*/, 1 /*numBlinks*/, 150 /*fadeTime*/, 150 /*onTime*/, 60 /*offTime*/);
+    // RandomSparklesAnimation* anim_randomColorSparkles = new RandomSparklesAnimation(ledStrip->getBufferLength(), *xmas_RedGreenGoldSilver);
 
-    animController.addAnimationPattern(anim_3colorAnts); //Add Animations
-    animController.addAnimationPattern(anim_snow);
-    animController.addAnimationPattern(anim_dancingBells);
+    /* 4th of July / Memorial Day Animations */
+    MarchingAntsAnimation* anim_3colorAnts = new MarchingAntsAnimation(ledStrip->getBufferLength(), *usa_RedWhiteBlue, 2, 300, Direction::FORWARD);
+    MovingBarsAnimation* anim_movingBarsBack = new MovingBarsAnimation(ledStrip->getBufferLength(), *usa_RedWhiteBlue, /*barSpeed*/20, /*int numBars*/5, /*fadeRate*/350, Direction::REVERSE);
+    RandomSparklesAnimation* anim_randomColorSparkles = new RandomSparklesAnimation(ledStrip->getBufferLength(), *usa_RedWhiteBlue);
+    MovingBarsAnimation* anim_movingBarsForward = new MovingBarsAnimation(ledStrip->getBufferLength(), *usa_RedWhiteBlue, /*barSpeed*/20, /*int numBars*/5, /*fadeRate*/350, Direction::FORWARD);
+
+    //Add Animations
+    animController.addAnimationPattern(anim_3colorAnts);
+    animController.addAnimationPattern(anim_movingBarsBack);
     animController.addAnimationPattern(anim_randomColorSparkles);
-    animController.addAnimationPattern(anim_dancingYellowLights);
+    animController.addAnimationPattern(anim_movingBarsForward);
     animController.setCycleMode(AnimationController::CycleModeLoop, 24000);
 }
 
